@@ -51,6 +51,7 @@ namespace GoldenPage
             var keyword = txtKeyword.Text.Trim();
             if (!string.IsNullOrWhiteSpace(keyword))
             {
+                txtResultStatus.Text = string.Empty;
                 var filename = $"{DateTime.Now.ToString("yyMMddHHmmss")}.xlsx";
                 filePath = Path.Combine(lblFileLocation.Text, filename);
                 List<Data> infoData = new List<Data>();
@@ -72,6 +73,7 @@ namespace GoldenPage
                 dataFetcher.WriteToExcel(infoData, filePath);
                 txtResultStatus.AppendText($"[{DateTime.Now}] Export to excel done {filePath} {Environment.NewLine}");
                 btnOpenFile.Enabled = true;
+                MessageBox.Show("Export data done");
             }
         }
 

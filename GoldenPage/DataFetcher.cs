@@ -85,21 +85,14 @@ namespace GoldenPage
                     var phone = item.Select("p[class=thoaisection]").Text;
                     var email = item.Select("div[class=email_text]").Select("a").Attr("title");
                     var website = item.Select("div[class=website_text]").Select("a").Attr("href");
-                    var detailUrl = item.Select("a[class=buttonMoreDetails]").Attr("href");
                     var data = new Data()
                     {
                         Name = name,
                         DetailUrl = website,
-                        TaxNumber = "",
                         Phone = phone,
                         Enail = email,
                         Address = address
                     };
-                    var result = await GetTaxNumber(detailUrl);
-                    if (!string.IsNullOrEmpty(result))
-                    {
-                        data.TaxNumber = result;
-                    }
                     datas.Add(data);
                 }
             }
@@ -124,17 +117,15 @@ namespace GoldenPage
                 {
                     ws.Cells["A1"].Value = "NAME";
                     ws.Cells["B1"].Value = "ADDRESS";
-                    ws.Cells["C1"].Value = "TAX NUMBER";
-                    ws.Cells["D1"].Value = "WEBSITE";
-                    ws.Cells["E1"].Value = "EMAIL";
-                    ws.Cells["F1"].Value = "PHONE";
+                    ws.Cells["C1"].Value = "WEBSITE";
+                    ws.Cells["D1"].Value = "EMAIL";
+                    ws.Cells["E1"].Value = "PHONE";
                     ws.Cells["A2"].LoadFromCollection(data);
                     ws.Column(1).Width = 50;
                     ws.Column(2).Width = 100;
                     ws.Column(3).Width = 20;
                     ws.Column(4).Width = 30;
                     ws.Column(5).Width = 30;
-                    ws.Column(6).Width = 30;
                     package.Save();
                 }
                 catch (AggregateException ex)
