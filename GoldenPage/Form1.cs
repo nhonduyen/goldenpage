@@ -48,15 +48,15 @@ namespace GoldenPage
             }
             btnOpenFile.Enabled = false;
             var dataFetcher = new DataFetcher();
-            var keyword = txtKeyword.Text.Trim();
-            if (!string.IsNullOrWhiteSpace(keyword))
+            var searchUrl = txtUrl.Text.Trim();
+            if (!string.IsNullOrWhiteSpace(searchUrl))
             {
                 txtResultStatus.Text = string.Empty;
                 var filename = $"{DateTime.Now.ToString("yyMMddHHmmss")}.xlsx";
                 filePath = Path.Combine(lblFileLocation.Text, filename);
                 List<Data> infoData = new List<Data>();
 
-                var url = $"{goldenPageUrl}psearch/việt_nam/{keyword.Replace(" ", "_")}.html";
+                var url = searchUrl;
                 txtResultStatus.AppendText($"[{DateTime.Now}] Fetching page {url}{Environment.NewLine}");
                 var numberOfPage = await Task<int>.Run(() => dataFetcher.GetNumberOfPages(url));
                 txtResultStatus.AppendText($"[{DateTime.Now}] Number of page [{numberOfPage}]{Environment.NewLine}");
@@ -69,11 +69,18 @@ namespace GoldenPage
                     txtResultStatus.AppendText($"[{DateTime.Now}] Fetching page done {pageUrl}{Environment.NewLine}");
                 }
                 txtResultStatus.AppendText($"[{DateTime.Now}] Fetching page done {Environment.NewLine}");
-                txtResultStatus.AppendText($"[{DateTime.Now}] Export to excel {Environment.NewLine}");
-                dataFetcher.WriteToExcel(infoData, filePath);
-                txtResultStatus.AppendText($"[{DateTime.Now}] Export to excel done {filePath} {Environment.NewLine}");
-                btnOpenFile.Enabled = true;
-                MessageBox.Show("Export data done");
+                if (infoData.Count > 0)
+                {
+                    txtResultStatus.AppendText($"[{DateTime.Now}] Export to excel {Environment.NewLine}");
+                    dataFetcher.WriteToExcel(infoData, filePath);
+                    txtResultStatus.AppendText($"[{DateTime.Now}] Export to excel done {filePath} {Environment.NewLine}");
+                    btnOpenFile.Enabled = true;
+                    MessageBox.Show("Export data done");
+                }
+                else
+                {
+                    txtResultStatus.AppendText($"[{DateTime.Now}] Data empty {Environment.NewLine}");
+                }
             }
         }
 

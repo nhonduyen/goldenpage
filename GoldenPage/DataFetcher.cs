@@ -80,7 +80,8 @@ namespace GoldenPage
 
                 foreach (var item in doc1.Select("div[class=boxlistings]"))
                 {
-                    var name = item.Select("div[class=company_name]").Text;
+                    var txtName = item.Select("div[class=company_name]").Text;
+                    var name = string.IsNullOrEmpty(txtName) ? item.Select("h2[class=company_name]").Text : txtName;
                     var address = item.Select("p[class=diachisection]").Last.Text;
                     var phone = item.Select("p[class=thoaisection]").Text;
                     var email = item.Select("div[class=email_text]").Select("a").Attr("title");

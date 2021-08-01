@@ -30,7 +30,7 @@ namespace GoldenPage
         private void InitializeComponent()
         {
             this.lblKeyword = new System.Windows.Forms.Label();
-            this.txtKeyword = new System.Windows.Forms.TextBox();
+            this.txtUrl = new System.Windows.Forms.TextBox();
             this.lblFileLocation = new System.Windows.Forms.Label();
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.btnBrowse = new System.Windows.Forms.Button();
@@ -44,16 +44,16 @@ namespace GoldenPage
             this.lblKeyword.AutoSize = true;
             this.lblKeyword.Location = new System.Drawing.Point(27, 57);
             this.lblKeyword.Name = "lblKeyword";
-            this.lblKeyword.Size = new System.Drawing.Size(48, 13);
+            this.lblKeyword.Size = new System.Drawing.Size(20, 13);
             this.lblKeyword.TabIndex = 0;
-            this.lblKeyword.Text = "Keyword";
+            this.lblKeyword.Text = "Url";
             // 
-            // txtKeyword
+            // txtUrl
             // 
-            this.txtKeyword.Location = new System.Drawing.Point(81, 54);
-            this.txtKeyword.Name = "txtKeyword";
-            this.txtKeyword.Size = new System.Drawing.Size(257, 20);
-            this.txtKeyword.TabIndex = 1;
+            this.txtUrl.Location = new System.Drawing.Point(53, 55);
+            this.txtUrl.Name = "txtUrl";
+            this.txtUrl.Size = new System.Drawing.Size(464, 20);
+            this.txtUrl.TabIndex = 1;
             // 
             // lblFileLocation
             // 
@@ -95,7 +95,7 @@ namespace GoldenPage
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(344, 52);
+            this.btnSearch.Location = new System.Drawing.Point(523, 53);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(75, 23);
             this.btnSearch.TabIndex = 6;
@@ -113,7 +113,7 @@ namespace GoldenPage
             this.Controls.Add(this.txtResultStatus);
             this.Controls.Add(this.btnBrowse);
             this.Controls.Add(this.lblFileLocation);
-            this.Controls.Add(this.txtKeyword);
+            this.Controls.Add(this.txtUrl);
             this.Controls.Add(this.lblKeyword);
             this.Name = "Form1";
             this.Text = "Golden Page";
@@ -126,7 +126,7 @@ namespace GoldenPage
         #endregion
 
         private System.Windows.Forms.Label lblKeyword;
-        private System.Windows.Forms.TextBox txtKeyword;
+        private System.Windows.Forms.TextBox txtUrl;
         private System.Windows.Forms.Label lblFileLocation;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
         private System.Windows.Forms.Button btnBrowse;
